@@ -1,0 +1,1698 @@
+================================================================================
+DIGITAL VAULT BANKING WEBSITE - COMPLETE SOURCE CODE
+================================================================================
+
+This file contains all the source code you need to build the Digital Vault
+banking website. Simply copy each file's content to the corresponding location
+in your React project.
+
+================================================================================
+FILE: package.json
+================================================================================
+{
+  "name": "digital-vault-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.5.1",
+    "lucide-react": "^0.507.0",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.4.17",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  }
+}
+
+================================================================================
+FILE: tailwind.config.js
+================================================================================
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+
+================================================================================
+FILE: src/index.js
+================================================================================
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "@/index.css";
+import App from "@/App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);
+
+================================================================================
+FILE: src/index.css  
+================================================================================
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family:
+        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+        --radius: 0.5rem;
+    }
+    .dark {
+        --background: 0 0% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
+
+================================================================================
+FILE: src/App.js
+================================================================================
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import HomePage from './pages/HomePage';
+import PersonalBanking from './pages/PersonalBanking';
+import BusinessBanking from './pages/BusinessBanking';
+import NRIBanking from './pages/NRIBanking';
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/personal" element={<PersonalBanking />} />
+          <Route path="/business" element={<BusinessBanking />} />
+          <Route path="/nri" element={<NRIBanking />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+================================================================================
+FILE: src/data/menuData.js
+================================================================================
+import { 
+  Wallet, CreditCard, Home, Shield, TrendingUp, Send, 
+  Building2, Briefcase, Globe, Users, FileText, Package
+} from 'lucide-react';
+
+export const personalMenu = [
+  {
+    title: 'Accounts',
+    icon: Wallet,
+    items: [
+      { name: 'Savings Account', link: '/accounts/savings', icon: Wallet, description: 'High interest savings' },
+      { name: 'Salary Account', link: '/accounts/salary', icon: Wallet, description: 'Exclusive benefits' },
+      { name: 'Private Banking', link: '/accounts/private', icon: Shield, description: 'Premium services' },
+      { name: '3-in-1 Account', link: '/accounts/3in1', icon: TrendingUp, description: 'Save + Trade + Invest' }
+    ]
+  },
+  {
+    title: 'Cards',
+    icon: CreditCard,
+    items: [
+      { name: 'Credit Card', link: '/cards/credit', icon: CreditCard, description: 'Rewards & cashback' },
+      { name: 'Debit Card', link: '/cards/debit', icon: CreditCard, description: 'Secure payments' },
+      { name: 'Forex Card', link: '/cards/forex', icon: Globe, description: 'Travel abroad' }
+    ]
+  },
+  {
+    title: 'Loans',
+    icon: Home,
+    items: [
+      { name: 'Home Loan', link: '/loans/home', icon: Home, description: 'Starting at 7.99%' },
+      { name: 'Personal Loan', link: '/loans/personal', icon: Wallet, description: 'Quick approval' },
+      { name: 'Car Loan', link: '/loans/car', icon: Package, description: 'Drive your dream' },
+      { name: 'Gold Loan', link: '/loans/gold', icon: Shield, description: 'Instant liquidity' }
+    ]
+  },
+  {
+    title: 'Insurance',
+    icon: Shield,
+    items: [
+      { name: 'Life Insurance', link: '/insurance/life', icon: Shield, description: 'Protect your family' },
+      { name: 'Health Insurance', link: '/insurance/health', icon: Shield, description: 'Medical coverage' },
+      { name: 'Vehicle Insurance', link: '/insurance/vehicle', icon: Package, description: 'Comprehensive plans' }
+    ]
+  },
+  {
+    title: 'Investments',
+    icon: TrendingUp,
+    items: [
+      { name: 'Fixed Deposits', link: '/investments/fd', icon: TrendingUp, description: 'Guaranteed returns' },
+      { name: 'Mutual Funds', link: '/investments/mf', icon: TrendingUp, description: 'Wealth creation' },
+      { name: 'Demat Account', link: '/investments/demat', icon: FileText, description: 'Start trading' }
+    ]
+  },
+  {
+    title: 'Payments',
+    icon: Send,
+    items: [
+      { name: 'Bill Payments', link: '/payments/bills', icon: Send, description: 'Pay all bills' },
+      { name: 'Fund Transfer', link: '/payments/transfer', icon: Send, description: 'NEFT/RTGS/IMPS' },
+      { name: 'FASTag', link: '/payments/fastag', icon: Package, description: 'Toll payments' }
+    ]
+  }
+];
+
+export const businessMenu = [
+  {
+    title: 'Banking',
+    icon: Building2,
+    items: [
+      { name: 'Current Account', link: '/business/accounts/current', icon: Wallet, description: 'Business banking' },
+      { name: 'Corporate Salary', link: '/business/accounts/salary', icon: Users, description: 'Payroll solutions' },
+      { name: 'Retail Institution', link: '/business/accounts/retail', icon: Building2, description: 'Institutional banking' }
+    ]
+  },
+  {
+    title: 'Lending',
+    icon: Briefcase,
+    items: [
+      { name: 'Business Loan', link: '/business/loans/business', icon: Briefcase, description: 'Growth capital' },
+      { name: 'Working Capital', link: '/business/loans/working', icon: TrendingUp, description: 'Operational funds' },
+      { name: 'Business Credit Card', link: '/business/cards/credit', icon: CreditCard, description: 'Expense management' },
+      { name: 'Loan Against Property', link: '/business/loans/lap', icon: Home, description: 'Secured loans' }
+    ]
+  },
+  {
+    title: 'Payments',
+    icon: Send,
+    items: [
+      { name: 'Payment Solutions', link: '/business/payments/solutions', icon: Send, description: 'Business payments' },
+      { name: 'Fund Transfer', link: '/business/payments/transfer', icon: Send, description: 'Bulk payments' },
+      { name: 'Taxes', link: '/business/payments/taxes', icon: FileText, description: 'Tax payments' }
+    ]
+  },
+  {
+    title: 'Trade',
+    icon: Globe,
+    items: [
+      { name: 'Domestic Trade', link: '/business/trade/domestic', icon: Package, description: 'Local trade' },
+      { name: 'International Exports', link: '/business/trade/exports', icon: Globe, description: 'Export services' },
+      { name: 'International Imports', link: '/business/trade/imports', icon: Globe, description: 'Import financing' },
+      { name: 'Bank Guarantee', link: '/business/trade/guarantee', icon: Shield, description: 'Financial guarantee' },
+      { name: 'Letter of Credit', link: '/business/trade/lc', icon: FileText, description: 'Trade finance' }
+    ]
+  },
+  {
+    title: 'Corporate Solutions',
+    icon: Building2,
+    items: [
+      { name: 'Cash Management', link: '/business/corporate/cash', icon: Wallet, description: 'Treasury services' },
+      { name: 'Trade Finance', link: '/business/corporate/trade', icon: Globe, description: 'Supply chain' },
+      { name: 'Corporate Accounts', link: '/business/corporate/accounts', icon: Building2, description: 'Large enterprises' }
+    ]
+  }
+];
+
+export const nriMenu = [
+  {
+    title: 'Accounts',
+    icon: Wallet,
+    items: [
+      { name: 'NRE Savings Account', link: '/nri/accounts/nre', icon: Wallet, description: 'Repatriable account' },
+      { name: 'NRO Savings Account', link: '/nri/accounts/nro', icon: Wallet, description: 'Non-repatriable' },
+      { name: 'FCNR Account', link: '/nri/accounts/fcnr', icon: Globe, description: 'Foreign currency' },
+      { name: 'NRI Current Account', link: '/nri/accounts/current', icon: Building2, description: 'Business banking' }
+    ]
+  },
+  {
+    title: 'Deposits',
+    icon: TrendingUp,
+    items: [
+      { name: 'NRE Fixed Deposit', link: '/nri/deposits/nre', icon: TrendingUp, description: 'Tax-free returns' },
+      { name: 'FCNR Deposits', link: '/nri/deposits/fcnr', icon: Globe, description: 'Foreign currency FD' },
+      { name: 'NRO Fixed Deposit', link: '/nri/deposits/nro', icon: TrendingUp, description: 'Rupee deposits' }
+    ]
+  },
+  {
+    title: 'Investment & Insurance',
+    icon: Shield,
+    items: [
+      { name: 'Demat Account', link: '/nri/investments/demat', icon: FileText, description: 'Stock trading' },
+      { name: 'Mutual Funds', link: '/nri/investments/mf', icon: TrendingUp, description: 'SIP investments' },
+      { name: 'Life Insurance', link: '/nri/insurance/life', icon: Shield, description: 'Coverage' }
+    ]
+  },
+  {
+    title: 'Money Transfer',
+    icon: Send,
+    items: [
+      { name: 'Wire Transfer', link: '/nri/transfer/wire', icon: Send, description: 'International transfer' },
+      { name: 'Click2Remit', link: '/nri/transfer/remit', icon: Send, description: 'Online remittance' }
+    ]
+  },
+  {
+    title: 'Cards',
+    icon: CreditCard,
+    items: [
+      { name: 'NRI Credit Card', link: '/nri/cards/credit', icon: CreditCard, description: 'Global acceptance' },
+      { name: 'NRI Debit Card', link: '/nri/cards/debit', icon: CreditCard, description: 'Worldwide access' }
+    ]
+  },
+  {
+    title: 'Loans',
+    icon: Home,
+    items: [
+      { name: 'NRI Home Loan', link: '/nri/loans/home', icon: Home, description: 'Property in India' }
+    ]
+  }
+];
+================================================================================
+FILE: src/components/Navbar.jsx
+================================================================================
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, ChevronDown, Search, User, Vault } from 'lucide-react';
+import { personalMenu, businessMenu, nriMenu } from '../data/menuData';
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeTab, setActiveTab] = useState('personal');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const getMenuData = () => {
+    switch(activeTab) {
+      case 'business': return businessMenu;
+      case 'nri': return nriMenu;
+      default: return personalMenu;
+    }
+  };
+
+  return (
+    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+    }`}>
+      {/* Top Bar */}
+      <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-2">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
+          <div className="flex items-center gap-6">
+            <button 
+              onClick={() => { setActiveTab('personal'); navigate('/personal'); }}
+              className={`hover:text-teal-200 transition-colors ${
+                activeTab === 'personal' ? 'font-semibold' : ''
+              }`}>
+              Personal
+            </button>
+            <button 
+              onClick={() => { setActiveTab('business'); navigate('/business'); }}
+              className={`hover:text-teal-200 transition-colors ${
+                activeTab === 'business' ? 'font-semibold' : ''
+              }`}>
+              Business
+            </button>
+            <button 
+              onClick={() => { setActiveTab('nri'); navigate('/nri'); }}
+              className={`hover:text-teal-200 transition-colors ${
+                activeTab === 'nri' ? 'font-semibold' : ''
+              }`}>
+              NRI
+            </button>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link to="/about" className="hover:text-teal-200 transition-colors">About Us</Link>
+            <Link to="/learn" className="hover:text-teal-200 transition-colors">Learn</Link>
+            <Link to="/help" className="hover:text-teal-200 transition-colors">Help</Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 group">
+              <div className="bg-gradient-to-br from-teal-600 to-cyan-600 p-2 rounded-lg group-hover:shadow-lg transition-shadow">
+                <Vault className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <div className="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                  Digital Vault
+                </div>
+                <div className="text-xs text-gray-500">Banking Solutions</div>
+              </div>
+            </Link>
+
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex items-center gap-1">
+              {getMenuData().map((item, index) => (
+                <div
+                  key={index}
+                  className="relative group"
+                  onMouseEnter={() => setActiveDropdown(index)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <button className="px-4 py-6 flex items-center gap-1 text-gray-700 hover:text-teal-600 transition-colors font-medium">
+                    {item.icon && <item.icon className="w-4 h-4" />}
+                    {item.title}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+
+                  {/* Dropdown */}
+                  {activeDropdown === index && (
+                    <div className="absolute top-full left-0 w-64 bg-white shadow-xl border border-gray-100 rounded-lg overflow-hidden">
+                      {item.items.map((subItem, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          to={subItem.link}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-teal-50 transition-colors group"
+                        >
+                          {subItem.icon && (
+                            <div className="bg-teal-100 p-2 rounded-lg group-hover:bg-teal-200 transition-colors">
+                              <subItem.icon className="w-5 h-5 text-teal-600" />
+                            </div>
+                          )}
+                          <div>
+                            <div className="text-sm font-medium text-gray-800 group-hover:text-teal-600">
+                              {subItem.name}
+                            </div>
+                            {subItem.description && (
+                              <div className="text-xs text-gray-500">{subItem.description}</div>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Right Section */}
+            <div className="hidden lg:flex items-center gap-4">
+              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <Search className="w-5 h-5 text-gray-600" />
+              </button>
+              <button className="px-6 py-2 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full hover:shadow-lg transition-all flex items-center gap-2">
+                <User className="w-4 h-4" />
+                Login
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[80vh] overflow-y-auto">
+          <div className="px-4 py-4 space-y-4">
+            {getMenuData().map((item, index) => (
+              <div key={index} className="space-y-2">
+                <div className="font-semibold text-gray-800 flex items-center gap-2">
+                  {item.icon && <item.icon className="w-5 h-5 text-teal-600" />}
+                  {item.title}
+                </div>
+                <div className="pl-4 space-y-2">
+                  {item.items.map((subItem, subIndex) => (
+                    <Link
+                      key={subIndex}
+                      to={subItem.link}
+                      className="flex items-center gap-2 py-2 text-gray-600 hover:text-teal-600"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {subItem.icon && <subItem.icon className="w-4 h-4" />}
+                      {subItem.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <button className="w-full px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full hover:shadow-lg transition-all flex items-center justify-center gap-2">
+              <User className="w-4 h-4" />
+              Login
+            </button>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
+================================================================================
+FILE: src/components/Footer.jsx
+================================================================================
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Vault, Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+
+const Footer = () => {
+  return (
+    <footer className="bg-gray-900 text-gray-300">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* About */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gradient-to-br from-teal-500 to-cyan-500 p-2 rounded-lg">
+                <Vault className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-xl font-bold text-white">Digital Vault</div>
+            </div>
+            <p className="text-sm mb-4">
+              Your trusted banking partner for secure and innovative financial solutions.
+            </p>
+            <div className="flex gap-3">
+              <a href="#" className="p-2 bg-gray-800 hover:bg-teal-600 rounded-full transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2 bg-gray-800 hover:bg-teal-600 rounded-full transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2 bg-gray-800 hover:bg-teal-600 rounded-full transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2 bg-gray-800 hover:bg-teal-600 rounded-full transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2 bg-gray-800 hover:bg-teal-600 rounded-full transition-colors">
+                <Youtube className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/personal" className="hover:text-teal-400 transition-colors">Personal Banking</Link></li>
+              <li><Link to="/business" className="hover:text-teal-400 transition-colors">Business Banking</Link></li>
+              <li><Link to="/nri" className="hover:text-teal-400 transition-colors">NRI Services</Link></li>
+              <li><Link to="/about" className="hover:text-teal-400 transition-colors">About Us</Link></li>
+              <li><Link to="/careers" className="hover:text-teal-400 transition-colors">Careers</Link></li>
+              <li><Link to="/investors" className="hover:text-teal-400 transition-colors">Investor Relations</Link></li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/accounts" className="hover:text-teal-400 transition-colors">Savings Account</Link></li>
+              <li><Link to="/cards" className="hover:text-teal-400 transition-colors">Credit Cards</Link></li>
+              <li><Link to="/loans" className="hover:text-teal-400 transition-colors">Loans</Link></li>
+              <li><Link to="/insurance" className="hover:text-teal-400 transition-colors">Insurance</Link></li>
+              <li><Link to="/investments" className="hover:text-teal-400 transition-colors">Investments</Link></li>
+              <li><Link to="/digital" className="hover:text-teal-400 transition-colors">Digital Banking</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Contact Us</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-2">
+                <Phone className="w-4 h-4 mt-1 text-teal-400" />
+                <div>
+                  <div>1800-XXX-XXXX</div>
+                  <div className="text-xs text-gray-400">24/7 Customer Support</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <Mail className="w-4 h-4 mt-1 text-teal-400" />
+                <div>support@digitalvault.com</div>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 mt-1 text-teal-400" />
+                <div>123 Banking Street, Financial District, Mumbai 400001</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <div className="text-gray-400">
+              © 2025 Digital Vault Bank. All rights reserved.
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/privacy" className="hover:text-teal-400 transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-teal-400 transition-colors">Terms of Service</Link>
+              <Link to="/security" className="hover:text-teal-400 transition-colors">Security</Link>
+              <Link to="/sitemap" className="hover:text-teal-400 transition-colors">Sitemap</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+================================================================================
+FILE: src/pages/HomePage.jsx
+================================================================================
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronRight, ChevronLeft, ArrowRight, Wallet, CreditCard, Home, TrendingUp, Shield, Building2, Users, Phone } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const HomePage = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      title: '₹6,000 Cashback with Super Savings Account',
+      subtitle: 'Open your account today and enjoy exclusive rewards',
+      cta: 'Open Account Now',
+      link: '/accounts/savings',
+      image: 'https://images.unsplash.com/photo-1695653422287-81cfeeb96ade'
+    },
+    {
+      title: 'Get Your Dream Home',
+      subtitle: 'Home Loans starting at 7.99% p.a. - Quick approval process',
+      cta: 'Apply Now',
+      link: '/loans/home',
+      image: 'https://images.pexels.com/photos/6771607/pexels-photo-6771607.jpeg'
+    },
+    {
+      title: 'Credit Cards with Amazing Benefits',
+      subtitle: 'Rewards, Cashback & EMI Deals on every purchase',
+      cta: 'Explore Cards',
+      link: '/cards/credit',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const featuredProducts = [
+    {
+      title: 'Savings Account',
+      subtitle: 'Step up with the right account',
+      description: 'Enjoy offers on multiple brands',
+      icon: Wallet,
+      link: '/accounts/savings',
+      gradient: 'from-teal-500 to-cyan-500'
+    },
+    {
+      title: 'Credit Cards',
+      subtitle: 'Exclusive offers await',
+      description: 'Rewards | Cashback | EMI Deals',
+      icon: CreditCard,
+      link: '/cards/credit',
+      gradient: 'from-blue-500 to-indigo-500'
+    },
+    {
+      title: 'Personal Loans',
+      subtitle: 'Power your aspirations',
+      description: 'Get loan up to ₹35 lakh',
+      icon: Home,
+      link: '/loans/personal',
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    {
+      title: 'Mutual Funds',
+      subtitle: 'Systematic investments',
+      description: 'Tailored to your goals',
+      icon: TrendingUp,
+      link: '/investments/mf',
+      gradient: 'from-green-500 to-emerald-500'
+    },
+    {
+      title: 'Insurance',
+      subtitle: 'Protect what matters',
+      description: 'Life | Health | Vehicle',
+      icon: Shield,
+      link: '/insurance/life',
+      gradient: 'from-orange-500 to-red-500'
+    },
+    {
+      title: 'Business Banking',
+      subtitle: 'Power your business',
+      description: 'Simplified transactions',
+      icon: Building2,
+      link: '/business',
+      gradient: 'from-indigo-500 to-purple-500'
+    }
+  ];
+
+  const rates = [
+    { title: 'Fixed Deposit', rate: '6.60%', subtitle: 'Regular', link: '/investments/fd' },
+    { title: 'Senior Citizen FD', rate: '7.10%', subtitle: 'Special Rate', link: '/investments/fd' },
+    { title: 'Savings Account', rate: '2.50%*', subtitle: 'Interest Rate', link: '/accounts/savings' },
+    { title: 'Home Loan', rate: '7.99%*', subtitle: 'Starting Rate', link: '/loans/home' },
+    { title: 'Personal Loan', rate: '9.98%*', subtitle: 'Starting Rate', link: '/loans/personal' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      
+      {/* Hero Section with Carousel */}
+      <section className="pt-32 pb-12 relative overflow-hidden">
+        <div className="relative h-[500px]">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                currentSlide === index ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <div className="relative h-full bg-gradient-to-r from-teal-600 to-cyan-600">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center opacity-20"
+                  style={{ backgroundImage: `url(${slide.image})` }}
+                />
+                <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+                  <div className="max-w-2xl text-white">
+                    <h1 className="text-5xl font-bold mb-4 leading-tight">
+                      {slide.title}
+                    </h1>
+                    <p className="text-xl mb-8 text-teal-50">
+                      {slide.subtitle}
+                    </p>
+                    <Link
+                      to={slide.link}
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
+                    >
+                      {slide.cta}
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          {/* Carousel Controls */}
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all"
+          >
+            <ChevronLeft className="w-6 h-6 text-white" />
+          </button>
+          <button
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all"
+          >
+            <ChevronRight className="w-6 h-6 text-white" />
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`h-2 rounded-full transition-all ${
+                  currentSlide === index ? 'w-8 bg-white' : 'w-2 bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
+            <p className="text-xl text-gray-600">Explore our range of banking solutions</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProducts.map((product, index) => (
+              <Link
+                key={index}
+                to={product.link}
+                className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-2"
+              >
+                <div className={`w-14 h-14 bg-gradient-to-br ${product.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <product.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{product.title}</h3>
+                <p className="text-gray-600 mb-1 font-medium">{product.subtitle}</p>
+                <p className="text-gray-500 text-sm mb-4">{product.description}</p>
+                <div className="flex items-center text-teal-600 font-semibold group-hover:gap-2 transition-all">
+                  Apply Now
+                  <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Rates & Charges */}
+      <section className="py-16 bg-gradient-to-br from-teal-50 to-cyan-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Rates & Charges</h2>
+            <p className="text-xl text-gray-600">Transparent and competitive rates</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {rates.map((rate, index) => (
+              <Link
+                key={index}
+                to={rate.link}
+                className="bg-white rounded-2xl p-6 text-center hover:shadow-xl transition-all hover:-translate-y-2 border border-teal-100"
+              >
+                <div className="text-4xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+                  {rate.rate}
+                </div>
+                <div className="text-gray-900 font-semibold mb-1">{rate.title}</div>
+                <div className="text-gray-500 text-sm">{rate.subtitle}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to get started?</h2>
+          <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
+            Join millions of customers who trust Digital Vault for their banking needs
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/accounts/savings"
+              className="px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+            >
+              Open Account
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <a
+              href="#contact"
+              className="px-8 py-4 bg-teal-700 text-white rounded-full font-semibold hover:bg-teal-800 transition-all inline-flex items-center justify-center gap-2 border-2 border-white"
+            >
+              <Phone className="w-5 h-5" />
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default HomePage;
+================================================================================
+FILE: src/pages/PersonalBanking.jsx
+================================================================================
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Wallet, CreditCard, Home, Shield, TrendingUp, Send, CheckCircle, Users, Award, Clock } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const PersonalBanking = () => {
+  const services = [
+    {
+      title: 'Savings & Current Accounts',
+      description: 'Choose from a range of accounts designed to meet your needs with attractive interest rates and exclusive benefits.',
+      icon: Wallet,
+      features: ['Zero balance accounts', 'High interest rates', 'Free debit card', 'Mobile & Net banking'],
+      link: '/accounts/savings',
+      image: 'https://images.pexels.com/photos/6771120/pexels-photo-6771120.jpeg'
+    },
+    {
+      title: 'Credit & Debit Cards',
+      description: 'Experience the convenience of digital payments with our range of cards offering rewards, cashback, and exclusive privileges.',
+      icon: CreditCard,
+      features: ['Lifetime free cards', 'Reward points', 'International usage', 'EMI conversion'],
+      link: '/cards/credit',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3'
+    },
+    {
+      title: 'Personal & Home Loans',
+      description: 'Fulfill your dreams with our competitive loan offerings. Quick approval, minimal documentation, and flexible repayment options.',
+      icon: Home,
+      features: ['Low interest rates', 'Quick disbursal', 'Flexible tenure', 'No hidden charges'],
+      link: '/loans/personal',
+      image: 'https://images.unsplash.com/photo-1695653422287-81cfeeb96ade'
+    },
+    {
+      title: 'Insurance Solutions',
+      description: 'Protect your loved ones and assets with comprehensive insurance coverage tailored to your needs.',
+      icon: Shield,
+      features: ['Life insurance', 'Health coverage', 'Vehicle insurance', 'Property protection'],
+      link: '/insurance/life',
+      image: 'https://images.pexels.com/photos/6771607/pexels-photo-6771607.jpeg'
+    },
+    {
+      title: 'Investment & Wealth',
+      description: 'Grow your wealth with our investment solutions including fixed deposits, mutual funds, and demat accounts.',
+      icon: TrendingUp,
+      features: ['Fixed deposits', 'Mutual funds', 'Stock trading', 'Portfolio advisory'],
+      link: '/investments/fd',
+      image: 'https://images.pexels.com/photos/6771120/pexels-photo-6771120.jpeg'
+    },
+    {
+      title: 'Payments & Transfers',
+      description: 'Make seamless transactions with our digital payment solutions. Pay bills, transfer funds, and manage your finances effortlessly.',
+      icon: Send,
+      features: ['UPI payments', 'NEFT/RTGS/IMPS', 'Bill payments', 'Forex services'],
+      link: '/payments/bills',
+      image: 'https://images.unsplash.com/photo-1695653422287-81cfeeb96ade'
+    }
+  ];
+
+  const benefits = [
+    { icon: Users, title: '10M+', subtitle: 'Happy Customers' },
+    { icon: Award, title: '50+', subtitle: 'Awards Won' },
+    { icon: Clock, title: '24/7', subtitle: 'Customer Support' },
+    { icon: CheckCircle, title: '99.9%', subtitle: 'Uptime' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 relative">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Personal Banking Solutions for Every Need
+            </h1>
+            <p className="text-xl text-teal-50 mb-8">
+              Experience banking that adapts to your lifestyle. From savings accounts to loans, investments to insurance - we've got you covered.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/accounts/savings"
+                className="px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                Open Account
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/loans/personal"
+                className="px-8 py-4 bg-teal-700 text-white rounded-full font-semibold hover:bg-teal-800 transition-all inline-flex items-center justify-center gap-2 border-2 border-white"
+              >
+                Apply for Loan
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="text-center">
+                <div className="flex justify-center mb-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
+                    <benefit.icon className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">{benefit.title}</div>
+                <div className="text-gray-600">{benefit.subtitle}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600">Comprehensive banking solutions tailored for you</p>
+          </div>
+
+          <div className="space-y-12">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className={`flex flex-col ${
+                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                } gap-8 items-center bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all`}
+              >
+                <div className="lg:w-1/2 p-8 lg:p-12">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                      <service.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
+                  </div>
+                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Link
+                    to={service.link}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105"
+                  >
+                    Learn More
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </div>
+                <div className="lg:w-1/2 h-80 lg:h-96 w-full relative overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Start Your Banking Journey Today</h2>
+          <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
+            Open your account in minutes and experience the future of banking
+          </p>
+          <Link
+            to="/accounts/savings"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
+          >
+            Get Started
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default PersonalBanking;
+================================================================================
+FILE: src/pages/BusinessBanking.jsx
+================================================================================
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Building2, Briefcase, TrendingUp, Globe, Shield, Users, CheckCircle, BarChart3, Clock, Award } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const BusinessBanking = () => {
+  const solutions = [
+    {
+      title: 'Current Accounts',
+      description: 'Streamline your business operations with our feature-rich current accounts designed for businesses of all sizes.',
+      icon: Building2,
+      features: ['Free transactions', 'Multi-user access', 'Cash management', 'Business debit card'],
+      link: '/business/accounts/current',
+      gradient: 'from-teal-500 to-cyan-500'
+    },
+    {
+      title: 'Business Loans',
+      description: 'Fuel your business growth with flexible financing options. Get collateral-free loans from ₹3 lakh to ₹1 crore.',
+      icon: Briefcase,
+      features: ['Quick approval', 'Flexible repayment', 'Competitive rates', 'Minimal documentation'],
+      link: '/business/loans/business',
+      gradient: 'from-blue-500 to-indigo-500'
+    },
+    {
+      title: 'Working Capital',
+      description: 'Ensure smooth business operations with our working capital solutions tailored to your cash flow requirements.',
+      icon: TrendingUp,
+      features: ['Overdraft facility', 'Bill discounting', 'Invoice financing', 'Trade credit'],
+      link: '/business/loans/working',
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    {
+      title: 'Trade Services',
+      description: 'Expand your business globally with our comprehensive trade finance and international banking solutions.',
+      icon: Globe,
+      features: ['Letter of credit', 'Bank guarantee', 'Export financing', 'Import services'],
+      link: '/business/trade/domestic',
+      gradient: 'from-green-500 to-emerald-500'
+    },
+    {
+      title: 'Payment Solutions',
+      description: 'Simplify your business payments with integrated solutions for collections, disbursements, and payroll.',
+      icon: Shield,
+      features: ['Bulk payments', 'Payment gateway', 'POS solutions', 'Tax payments'],
+      link: '/business/payments/solutions',
+      gradient: 'from-orange-500 to-red-500'
+    },
+    {
+      title: 'Corporate Solutions',
+      description: 'Dedicated banking services for large corporations with customized treasury and cash management solutions.',
+      icon: Users,
+      features: ['Treasury services', 'Corporate accounts', 'Risk management', 'Advisory services'],
+      link: '/business/corporate/cash',
+      gradient: 'from-indigo-500 to-purple-500'
+    }
+  ];
+
+  const stats = [
+    { icon: Building2, value: '50K+', label: 'Business Clients' },
+    { icon: BarChart3, value: '₹500Cr+', label: 'Loans Disbursed' },
+    { icon: Clock, value: '48hrs', label: 'Loan Approval' },
+    { icon: Award, value: '#1', label: 'Business Bank' }
+  ];
+
+  const benefits = [
+    'Dedicated relationship manager',
+    'Priority customer service',
+    'Customized financial solutions',
+    'Digital banking platform',
+    'Industry-specific expertise',
+    'Competitive interest rates'
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-10"
+            style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1594938350684-4c251b5030d1)' }}
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl font-bold mb-6 leading-tight">
+                Business Banking Solutions That Scale
+              </h1>
+              <p className="text-xl text-teal-50 mb-8">
+                Empower your business with comprehensive banking solutions designed for growth. From startups to enterprises, we've got the right tools for you.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/business/accounts/current"
+                  className="px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+                >
+                  Open Business Account
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  to="/business/loans/business"
+                  className="px-8 py-4 bg-teal-700 text-white rounded-full font-semibold hover:bg-teal-800 transition-all inline-flex items-center justify-center gap-2 border-2 border-white"
+                >
+                  Apply for Loan
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <img
+                src="https://images.unsplash.com/photo-1738750908048-14200459c3c9"
+                alt="Business Professional"
+                className="rounded-2xl shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="flex justify-center mb-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
+                    <stat.icon className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                <div className="text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions Grid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Business Banking Solutions</h2>
+            <p className="text-xl text-gray-600">Comprehensive services to support your business at every stage</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {solutions.map((solution, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-gray-100"
+              >
+                <div className={`w-14 h-14 bg-gradient-to-br ${solution.gradient} rounded-xl flex items-center justify-center mb-4`}>
+                  <solution.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{solution.title}</h3>
+                <p className="text-gray-600 mb-6">{solution.description}</p>
+                <div className="space-y-2 mb-6">
+                  {solution.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  to={solution.link}
+                  className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:gap-3 transition-all"
+                >
+                  Learn More
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 bg-gradient-to-br from-teal-50 to-cyan-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1594938350684-4c251b5030d1"
+                alt="Business Banking"
+                className="rounded-2xl shadow-xl"
+              />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose Digital Vault for Business?</h2>
+              <p className="text-gray-600 mb-8">
+                We understand the unique needs of businesses and provide tailored solutions to help you succeed.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
+                    <CheckCircle className="w-6 h-6 text-teal-600 flex-shrink-0" />
+                    <span className="text-gray-800 font-medium">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              <Link
+                to="/business/accounts/current"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105 mt-8"
+              >
+                Get Started Today
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Grow Your Business?</h2>
+          <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
+            Partner with Digital Vault and unlock new opportunities for your business
+          </p>
+          <Link
+            to="/business/loans/business"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
+          >
+            Apply for Business Loan
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default BusinessBanking;
+================================================================================
+FILE: src/pages/NRIBanking.jsx
+================================================================================
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Globe, Wallet, TrendingUp, Send, CreditCard, Home, CheckCircle, Users, Shield, Clock, Award } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const NRIBanking = () => {
+  const accounts = [
+    {
+      title: 'NRE Account',
+      description: 'Non-Resident External Account for managing your foreign earnings in India with full repatriability.',
+      icon: Globe,
+      features: ['Tax-free interest', 'Fully repatriable', 'Joint account facility', 'Easy fund transfer'],
+      link: '/nri/accounts/nre',
+      gradient: 'from-teal-500 to-cyan-500'
+    },
+    {
+      title: 'NRO Account',
+      description: 'Non-Resident Ordinary Account to manage your income earned in India with ease and convenience.',
+      icon: Wallet,
+      features: ['Manage Indian income', 'Local transactions', 'Multiple account holders', 'Online banking'],
+      link: '/nri/accounts/nro',
+      gradient: 'from-blue-500 to-indigo-500'
+    },
+    {
+      title: 'FCNR Account',
+      description: 'Foreign Currency Non-Resident Account to park your foreign earnings in foreign currency.',
+      icon: TrendingUp,
+      features: ['Foreign currency deposit', 'No exchange risk', 'Attractive interest rates', 'Repatriable principal'],
+      link: '/nri/accounts/fcnr',
+      gradient: 'from-purple-500 to-pink-500'
+    }
+  ];
+
+  const services = [
+    {
+      title: 'NRI Fixed Deposits',
+      description: 'Earn attractive returns on your savings with our NRE, NRO, and FCNR fixed deposit schemes.',
+      icon: TrendingUp,
+      link: '/nri/deposits/nre'
+    },
+    {
+      title: 'Money Transfer',
+      description: 'Quick and secure money transfer to India through wire transfer, Click2Remit, and more.',
+      icon: Send,
+      link: '/nri/transfer/wire'
+    },
+    {
+      title: 'NRI Credit Cards',
+      description: 'Global acceptance with rewards, cashback, and exclusive privileges worldwide.',
+      icon: CreditCard,
+      link: '/nri/cards/credit'
+    },
+    {
+      title: 'NRI Home Loans',
+      description: 'Fulfill your dream of owning a home in India with competitive interest rates.',
+      icon: Home,
+      link: '/nri/loans/home'
+    },
+    {
+      title: 'Investment Solutions',
+      description: 'Invest in Indian markets through Demat accounts and mutual funds.',
+      icon: TrendingUp,
+      link: '/nri/investments/demat'
+    },
+    {
+      title: 'Insurance Plans',
+      description: 'Comprehensive life insurance coverage for you and your family.',
+      icon: Shield,
+      link: '/nri/insurance/life'
+    }
+  ];
+
+  const benefits = [
+    { icon: Users, title: '100K+', subtitle: 'NRI Customers' },
+    { icon: Globe, title: '50+', subtitle: 'Countries Served' },
+    { icon: Clock, title: '24/7', subtitle: 'Global Support' },
+    { icon: Award, title: 'Trusted', subtitle: 'Banking Partner' }
+  ];
+
+  const features = [
+    'Seamless account opening within 72 hours',
+    'Dedicated NRI relationship manager',
+    'Competitive interest rates on deposits',
+    'Easy online banking & mobile app',
+    'Quick remittance services',
+    'Tax-efficient investment options'
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-10"
+            style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1738750908048-14200459c3c9)' }}
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 relative">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+              <Globe className="w-5 h-5" />
+              <span className="font-semibold">Banking for Indians Abroad</span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              NRI Banking Solutions That Connect You to India
+            </h1>
+            <p className="text-xl text-teal-50 mb-8">
+              Manage your finances in India with ease. Open accounts, invest, send money, and more - all from anywhere in the world.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                to="/nri/accounts/nre"
+                className="px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                Open NRI Account
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/nri/transfer/wire"
+                className="px-8 py-4 bg-teal-700 text-white rounded-full font-semibold hover:bg-teal-800 transition-all inline-flex items-center justify-center gap-2 border-2 border-white"
+              >
+                Send Money to India
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="text-center">
+                <div className="flex justify-center mb-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
+                    <benefit.icon className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">{benefit.title}</div>
+                <div className="text-gray-600">{benefit.subtitle}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Accounts Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">NRI Account Options</h2>
+            <p className="text-xl text-gray-600">Choose the right account type for your needs</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {accounts.map((account, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-gray-100"
+              >
+                <div className={`w-14 h-14 bg-gradient-to-br ${account.gradient} rounded-xl flex items-center justify-center mb-4`}>
+                  <account.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{account.title}</h3>
+                <p className="text-gray-600 mb-6">{account.description}</p>
+                <div className="space-y-2 mb-6">
+                  {account.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  to={account.link}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105"
+                >
+                  Open Account
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="py-16 bg-gradient-to-br from-teal-50 to-cyan-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Complete NRI Banking Services</h2>
+            <p className="text-xl text-gray-600">Everything you need to manage your finances in India</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <Link
+                key={index}
+                to={service.link}
+                className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-2 group"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <service.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <div className="flex items-center text-teal-600 font-semibold group-hover:gap-2 transition-all">
+                  Explore
+                  <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <img
+                src="https://images.pexels.com/photos/6771607/pexels-photo-6771607.jpeg"
+                alt="NRI Banking"
+                className="rounded-2xl shadow-xl"
+              />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why NRIs Choose Digital Vault</h2>
+              <p className="text-gray-600 mb-8">
+                Banking made simple for Non-Resident Indians. Experience seamless account management, quick transfers, and personalized services.
+              </p>
+              <div className="space-y-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle className="w-6 h-6 text-teal-600 flex-shrink-0 mt-1" />
+                    <span className="text-gray-800 text-lg">{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <Link
+                to="/nri/accounts/nre"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105 mt-8"
+              >
+                Get Started
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Stay Connected to India</h2>
+          <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
+            Open your NRI account today and experience hassle-free banking from anywhere in the world
+          </p>
+          <Link
+            to="/nri/accounts/nre"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
+          >
+            Open NRI Account
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default NRIBanking;
+================================================================================
+SETUP INSTRUCTIONS
+================================================================================
+
+1. CREATE NEW REACT APP
+   npx create-react-app digital-vault
+   cd digital-vault
+
+2. INSTALL DEPENDENCIES
+   npm install react-router-dom lucide-react
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init
+
+3. COPY FILES
+   - Copy each file content from above to the corresponding location
+   - Create folders: src/components/, src/pages/, src/data/
+
+4. RUN THE PROJECT
+   npm start
+
+5. BUILD FOR PRODUCTION
+   npm run build
+
+================================================================================
+END OF FILE
+================================================================================
