@@ -1,5 +1,5 @@
 ================================================================================
-DIGITAL VAULT BANKING WEBSITE - COMPLETE SOURCE CODE
+ACCESSONE BANKING WEBSITE - COMPLETE SOURCE CODE
 ================================================================================
 
 This file contains all the source code you need to build the Digital Vault

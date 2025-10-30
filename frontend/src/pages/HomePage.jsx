@@ -228,7 +228,7 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to get started?</h2>
           <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
-            Join millions of customers who trust Digital Vault for their banking needs
+            Join millions of customers who trust AccessOne for their banking needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

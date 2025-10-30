@@ -193,7 +193,7 @@ const BusinessBanking = () => {
               />
             </div>
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose Digital Vault for Business?</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose AccessOne for Business?</h2>
               <p className="text-gray-600 mb-8">
                 We understand the unique needs of businesses and provide tailored solutions to help you succeed.
               </p>
@@ -222,7 +222,7 @@ const BusinessBanking = () => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Grow Your Business?</h2>
           <p className="text-xl text-teal-50 mb-8 max-w-2xl mx-auto">
-            Partner with Digital Vault and unlock new opportunities for your business
+            Partner with AccessOne and unlock new opportunities for your business
           </p>
           <Link
             to="/business/loans/business"

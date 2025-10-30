@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="bg-gradient-to-br from-teal-500 to-cyan-500 p-2 rounded-lg">
                 <Vault className="w-6 h-6 text-white" />
               </div>
-              <div className="text-xl font-bold text-white">Digital Vault</div>
+              <div className="text-xl font-bold text-white">AccessOne</div>
             </div>
             <p className="text-sm mb-4">
               Your trusted banking partner for secure and innovative financial solutions.
@@ -77,11 +77,11 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-1 text-teal-400" />
-                <div>support@digitalvault.com</div>
+                <div>support@accessone.com</div>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-1 text-teal-400" />
-                <div>123 Banking Street, Financial District, Mumbai 400001</div>
+                <div>123 Banking Street, Financial District, Kolkata 711103</div>
               </li>
             </ul>
           </div>
@@ -93,7 +93,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
             <div className="text-gray-400">
-              © 2025 Digital Vault Bank. All rights reserved.
+              © 2025 AccessOne Bank. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-4">
               <Link to="/privacy" className="hover:text-teal-400 transition-colors">Privacy Policy</Link>

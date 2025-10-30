@@ -233,7 +233,7 @@ const NRIBanking = () => {
               />
             </div>
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why NRIs Choose Digital Vault</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why NRIs Choose AccessOne</h2>
               <p className="text-gray-600 mb-8">
                 Banking made simple for Non-Resident Indians. Experience seamless account management, quick transfers, and personalized services.
               </p>

@@ -75,7 +75,7 @@ const Navbar = () => {
               </div>
               <div>
                 <div className="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                  Digital Vault
+                  AccessOne
                 </div>
                 <div className="text-xs text-gray-500">Banking Solutions</div>
               </div>
