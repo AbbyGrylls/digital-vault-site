@@ -30,40 +30,7 @@ const Navbar = () => {
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
     }`}>
-      {/* Top Bar */}
-      <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-2">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <button 
-              onClick={() => { setActiveTab('personal'); navigate('/personal'); }}
-              className={`hover:text-teal-200 transition-colors ${
-                activeTab === 'personal' ? 'font-semibold' : ''
-              }`}>
-              Personal
-            </button>
-            <button 
-              onClick={() => { setActiveTab('business'); navigate('/business'); }}
-              className={`hover:text-teal-200 transition-colors ${
-                activeTab === 'business' ? 'font-semibold' : ''
-              }`}>
-              Business
-            </button>
-            <button 
-              onClick={() => { setActiveTab('nri'); navigate('/nri'); }}
-              className={`hover:text-teal-200 transition-colors ${
-                activeTab === 'nri' ? 'font-semibold' : ''
-              }`}>
-              NRI
-            </button>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link to="/about" className="hover:text-teal-200 transition-colors">About Us</Link>
-            <Link to="/learn" className="hover:text-teal-200 transition-colors">Learn</Link>
-            <Link to="/help" className="hover:text-teal-200 transition-colors">Help</Link>
-          </div>
-        </div>
-      </div>
-
+      
       {/* Main Navigation */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4">
@@ -72,12 +39,6 @@ const Navbar = () => {
             <Link to="/" className="flex items-center gap-2 group">
               <div className="bg-gradient-to-br from-teal-600 to-cyan-600 p-2 rounded-lg group-hover:shadow-lg transition-shadow">
                 <Vault className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                  AccessOne
-                </div>
-                <div className="text-xs text-gray-500">Banking Solutions</div>
               </div>
             </Link>
 
@@ -147,7 +108,40 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
+      {/* Top Bar */}
+      <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-2">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
+          <div className="flex items-center gap-6">
+            <button 
+              onClick={() => { setActiveTab('personal'); navigate('/personal'); }}
+              className={`hover:text-teal-200 transition-colors ${
+                activeTab === 'personal' ? 'font-semibold' : ''
+              }`}>
+              Personal
+            </button>
+            <button 
+              onClick={() => { setActiveTab('business'); navigate('/business'); }}
+              className={`hover:text-teal-200 transition-colors ${
+                activeTab === 'business' ? 'font-semibold' : ''
+              }`}>
+              Business
+            </button>
+            <button 
+              onClick={() => { setActiveTab('nri'); navigate('/nri'); }}
+              className={`hover:text-teal-200 transition-colors ${
+                activeTab === 'nri' ? 'font-semibold' : ''
+              }`}>
+              NRI
+            </button>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link to="/about" className="hover:text-teal-200 transition-colors">About Us</Link>
+            <Link to="/learn" className="hover:text-teal-200 transition-colors">Learn</Link>
+            <Link to="/help" className="hover:text-teal-200 transition-colors">Help</Link>
+          </div>
+        </div>
+      </div>
+      
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[80vh] overflow-y-auto">

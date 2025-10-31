@@ -100,19 +100,38 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+      {/* AccessOne Intro Banner */}
+      <div className="bg-gradient-to-r from-teal-50 to-cyan-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 pt-40 pb-20 mb-20 mt-20 text-center animate-fadeIn">
+          <h1 className="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+            Introducing <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">AccessOne</span>
+          </h1>
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+            Your ultimate AI-powered banking assistant — making your finances effortless, intelligent, and secure.
+          </p>
+          <div className="flex justify-center">
+            <Link
+              to="/ai-assistant"
+              className="px-10 py-4 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold hover:shadow-2xl transition-all hover:scale-105"
+            >
+              Try AccessOne
+            </Link>
+          </div>
+        </div>
+      </div>
+
+
       {/* Hero Section with Carousel */}
-      <section className="pt-32 pb-12 relative overflow-hidden">
+      <section className="pt-0 pb-12 relative overflow-hidden">
         <div className="relative h-[500px]">
           {heroSlides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                currentSlide === index ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? 'opacity-100' : 'opacity-0'
+                }`}
             >
               <div className="relative h-full bg-gradient-to-r from-teal-600 to-cyan-600">
-                <div 
+                <div
                   className="absolute inset-0 bg-cover bg-center opacity-20"
                   style={{ backgroundImage: `url(${slide.image})` }}
                 />
@@ -136,7 +155,7 @@ const HomePage = () => {
               </div>
             </div>
           ))}
-          
+
           {/* Carousel Controls */}
           <button
             onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
@@ -157,9 +176,8 @@ const HomePage = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`h-2 rounded-full transition-all ${
-                  currentSlide === index ? 'w-8 bg-white' : 'w-2 bg-white/50'
-                }`}
+                className={`h-2 rounded-full transition-all ${currentSlide === index ? 'w-8 bg-white' : 'w-2 bg-white/50'
+                  }`}
               />
             ))}
           </div>
@@ -173,7 +191,7 @@ const HomePage = () => {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
             <p className="text-xl text-gray-600">Explore our range of banking solutions</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProducts.map((product, index) => (
               <Link
@@ -204,7 +222,7 @@ const HomePage = () => {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Rates & Charges</h2>
             <p className="text-xl text-gray-600">Transparent and competitive rates</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {rates.map((rate, index) => (
               <Link
