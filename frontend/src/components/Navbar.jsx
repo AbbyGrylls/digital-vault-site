@@ -19,7 +19,7 @@ const Navbar = () => {
   }, []);
 
   const getMenuData = () => {
-    switch(activeTab) {
+    switch (activeTab) {
       case 'business': return businessMenu;
       case 'nri': return nriMenu;
       default: return personalMenu;
@@ -27,12 +27,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
-    }`}>
-      
+    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900 shadow-lg' : 'bg-gray-900/95 backdrop-blur-sm'
+      } text-gray-300`}>
+
+
       {/* Main Navigation */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-gray-900 border-b border-gray-800">
+
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -51,7 +52,8 @@ const Navbar = () => {
                   onMouseEnter={() => setActiveDropdown(index)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className="px-4 py-6 flex items-center gap-1 text-gray-700 hover:text-teal-600 transition-colors font-medium">
+                  <button className="px-4 py-6 flex items-center gap-1 text-gray-300 hover:text-teal-400
+ transition-colors font-medium">
                     {item.icon && <item.icon className="w-4 h-4" />}
                     {item.title}
                     <ChevronDown className="w-4 h-4" />
@@ -59,12 +61,14 @@ const Navbar = () => {
 
                   {/* Dropdown */}
                   {activeDropdown === index && (
-                    <div className="absolute top-full left-0 w-64 bg-white shadow-xl border border-gray-100 rounded-lg overflow-hidden">
+                    <div className="absolute top-full left-0 w-64 bg-gray-900 shadow-xl border border-gray-800
+ rounded-lg overflow-hidden">
                       {item.items.map((subItem, subIndex) => (
                         <Link
                           key={subIndex}
                           to={subItem.link}
-                          className="flex items-center gap-3 px-4 py-3 hover:bg-teal-50 transition-colors group"
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-gray-800
+ transition-colors group"
                         >
                           {subItem.icon && (
                             <div className="bg-teal-100 p-2 rounded-lg group-hover:bg-teal-200 transition-colors">
@@ -109,39 +113,39 @@ const Navbar = () => {
         </div>
       </div>
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-2">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <button 
-              onClick={() => { setActiveTab('personal'); navigate('/personal'); }}
-              className={`hover:text-teal-200 transition-colors ${
-                activeTab === 'personal' ? 'font-semibold' : ''
-              }`}>
-              Personal
-            </button>
-            <button 
-              onClick={() => { setActiveTab('business'); navigate('/business'); }}
-              className={`hover:text-teal-200 transition-colors ${
-                activeTab === 'business' ? 'font-semibold' : ''
-              }`}>
-              Business
-            </button>
-            <button 
-              onClick={() => { setActiveTab('nri'); navigate('/nri'); }}
-              className={`hover:text-teal-200 transition-colors ${
-                activeTab === 'nri' ? 'font-semibold' : ''
-              }`}>
-              NRI
-            </button>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link to="/about" className="hover:text-teal-200 transition-colors">About Us</Link>
-            <Link to="/learn" className="hover:text-teal-200 transition-colors">Learn</Link>
-            <Link to="/help" className="hover:text-teal-200 transition-colors">Help</Link>
+      {!isScrolled && (
+        <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-2 transition-all duration-500">
+          <div className="max-w-7xl mx-auto px-4 flex justify-start items-center text-sm">
+            <div className="flex items-center gap-6">
+              <button
+                onClick={() => { setActiveTab('personal'); navigate('/personal'); }}
+                className={`hover:text-teal-200 transition-colors ${activeTab === 'personal' ? 'font-semibold' : ''
+                  }`}>
+                Personal
+              </button>
+              <button
+                onClick={() => { setActiveTab('business'); navigate('/business'); }}
+                className={`hover:text-teal-200 transition-colors ${activeTab === 'business' ? 'font-semibold' : ''
+                  }`}>
+                Business
+              </button>
+              <button
+                onClick={() => { setActiveTab('nri'); navigate('/nri'); }}
+                className={`hover:text-teal-200 transition-colors ${activeTab === 'nri' ? 'font-semibold' : ''
+                  }`}>
+                NRI
+              </button>
+            </div>
+            <div className="flex items-center gap-4 ml-auto">
+              <Link to="/about" className="hover:text-teal-200 transition-colors">About Us</Link>
+              <Link to="/learn" className="hover:text-teal-200 transition-colors">Learn</Link>
+              <Link to="/help" className="hover:text-teal-200 transition-colors">Help</Link>
+            </div>
           </div>
         </div>
-      </div>
-      
+      )}
+
+
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[80vh] overflow-y-auto">
