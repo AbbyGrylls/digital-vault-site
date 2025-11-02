@@ -120,10 +120,10 @@ const HomePage = () => {
         </div>
       </div>
 
-
       {/* Hero Section with Carousel */}
-      <section className="pt-0 pb-12 relative overflow-hidden">
-        <div className="relative h-[500px]">
+      <section className="pt-18 pb-18 relative overflow-hidden bg-gradient-to-r from-teal-600 to-cyan-600">
+        <div className="relative w-full h-[500px]">
+
           {heroSlides.map((slide, index) => (
             <div
               key={index}
@@ -131,33 +131,41 @@ const HomePage = () => {
                 }`}
             >
               <div className="relative h-full bg-gradient-to-r from-teal-600 to-cyan-600">
-                <div
-                  className="absolute inset-0 bg-cover bg-center opacity-20"
-                  style={{ backgroundImage: `url(${slide.image})` }}
-                />
-                <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center">
-                  <div className="max-w-2xl text-white">
-                    <h1 className="text-5xl font-bold mb-4 leading-tight">
+                <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-between gap-8">
+
+                  {/* Left: Text Section (≈ 382px wide) */}
+                  <div className="w-[38%] text-white">
+                    <h1 className="text-4xl font-bold mb-3 leading-snug">
                       {slide.title}
                     </h1>
-                    <p className="text-xl mb-8 text-teal-50">
+                    <p className="text-lg mb-6 text-teal-50">
                       {slide.subtitle}
                     </p>
                     <Link
                       to={slide.link}
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
+                      className="inline-flex items-center gap-2 px-8 py-3 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
                     >
                       {slide.cta}
                       <ArrowRight className="w-5 h-5" />
                     </Link>
                   </div>
+
+                  {/* Right: Image Section (≈ 618px wide) */}
+                  <div className="w-[62%] h-[380px] rounded-2xl overflow-hidden shadow-lg">
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
+
             </div>
           ))}
 
           {/* Carousel Controls */}
-          <button
+          {/* <button
             onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
             className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all"
           >
@@ -168,10 +176,12 @@ const HomePage = () => {
             className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all"
           >
             <ChevronRight className="w-6 h-6 text-white" />
-          </button>
+          </button> */}
 
           {/* Slide Indicators */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+
+
             {heroSlides.map((_, index) => (
               <button
                 key={index}
@@ -197,8 +207,9 @@ const HomePage = () => {
               <Link
                 key={index}
                 to={product.link}
-                className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-2"
+                className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:bg-gray-100 transition-all hover:-translate-y-2"
               >
+
                 <div className={`w-14 h-14 bg-gradient-to-br ${product.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <product.icon className="w-7 h-7 text-white" />
                 </div>
