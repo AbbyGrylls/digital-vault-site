@@ -122,7 +122,7 @@ const HomePage = () => {
 
       {/* Hero Section with Carousel */}
       <section className="pt-18 pb-18 relative overflow-hidden bg-gradient-to-r from-teal-600 to-cyan-600">
-        <div className="relative w-full h-[500px]">
+        <div className="relative w-full h-[550px] lg:h-[530px]">
 
           {heroSlides.map((slide, index) => (
             <div
@@ -131,34 +131,68 @@ const HomePage = () => {
                 }`}
             >
               <div className="relative h-full bg-gradient-to-r from-teal-600 to-cyan-600">
-                <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-between gap-8">
+                  {/* Hidden by default, but shows as 'flex' on 'lg' screens and up */}
+                  <div className="hidden lg:flex relative max-w-7xl mx-auto px-4 h-full items-center justify-between gap-8">
+                    
+                    {/* Left: Text Section (38%) */}
+                    <div className="w-[38%] text-white">
+                      <h1 className="text-4xl font-bold mb-3 leading-snug">
+                        {slide.title}
+                      </h1>
+                      <p className="text-lg mb-6 text-teal-50">
+                        {slide.subtitle}
+                      </p>
+                      <Link
+                        to={slide.link}
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
+                      >
+                        {slide.cta}
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                    </div>
 
-                  {/* Left: Text Section (≈ 382px wide) */}
-                  <div className="w-[38%] text-white">
-                    <h1 className="text-4xl font-bold mb-3 leading-snug">
-                      {slide.title}
-                    </h1>
-                    <p className="text-lg mb-6 text-teal-50">
-                      {slide.subtitle}
-                    </p>
-                    <Link
-                      to={slide.link}
-                      className="inline-flex items-center gap-2 px-8 py-3 bg-white text-teal-600 rounded-full font-semibold hover:shadow-2xl transition-all hover:scale-105"
-                    >
-                      {slide.cta}
-                      <ArrowRight className="w-5 h-5" />
-                    </Link>
+                    {/* Right: Image Section (62%) */}
+                    <div className="w-[62%] h-[380px] rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
 
-                  {/* Right: Image Section (≈ 618px wide) */}
-                  <div className="w-[62%] h-[380px] rounded-2xl overflow-hidden shadow-lg">
-                    <img
-                      src={slide.image}
-                      alt={slide.title}
-                      className="w-full h-full object-cover"
-                    />
+                  {/* 2. MOBILE VERSION (Stacked) */}
+                  {/* Shows as 'flex' by default, but is 'hidden' on 'lg' screens and up */}
+                  <div className="lg:hidden relative max-w-7xl mx-auto px-4 h-full flex flex-col items-center gap-6 pt-12 text-center">
+                    
+                    {/* Top: Text Section (Stacked) */}
+                    <div className="w-full text-white">
+                      {/* Smaller text for mobile */}
+                      <h1 className="text-3xl font-bold mb-3 leading-snug">
+                        {slide.title}
+                      </h1>
+                      <p className="text-base mb-6 text-teal-50">
+                        {slide.subtitle}
+                      </p>
+                      <Link
+                        to={slide.link}
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-white text-teal-600 rounded-full font-semibold"
+                      >
+                        {slide.cta}
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                    </div>
+
+                    {/* Bottom: Image Section (Stacked) */}
+                    {/* Shorter height for mobile */}
+                    <div className="w-full max-w-md h-[250px] rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
               </div>
 
             </div>
